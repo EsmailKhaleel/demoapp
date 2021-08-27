@@ -1,3 +1,4 @@
+import 'package:firstproject/Screens/mapScreen.dart';
 import 'package:firstproject/Screens/widget/mycard.dart';
 import 'package:firstproject/models/user.dart';
 import 'package:firstproject/utilities.dart';
@@ -26,34 +27,38 @@ class _UserDetailsState extends State<UserDetails> {
             },
             child: Text("Email: ${widget.user.email}"),
           ),
-
           SizedBox(
             height: 10,
           ),
-
           InkWell(
             onTap: () {
               LaunchURL("tel:${widget.user.phone}");
             },
             child: Text("phone: ${widget.user.phone}"),
           ),
-
           SizedBox(
             height: 10,
           ),
-
           Divider(),
           SizedBox(
             height: 10,
           ),
-          
           InkWell(
-            onTap:(){
+            onTap: () {
               LaunchURL("https://${widget.user.website}");
-            } ,
+            },
             child: Text("website:${widget.user.website}"),
           ),
-
+          MaterialButton(
+            onPressed: () {
+              pushPage(
+                  context,
+                  MapSample(
+                    userLocation: widget.user.address.geo,
+                  ));
+            },
+            child: Text("User Location"),
+          ),
         ],
       ),
     );
